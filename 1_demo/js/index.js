@@ -1,0 +1,23 @@
+ajax({
+  type:"get",
+  url:"data/isLogin.php",
+  dataType:"json"
+}).then(data=>{
+  if(data.ok==1){
+    document.getElementById("login").style.display="none";
+    document.getElementById("uname")
+            .innerHTML=data.uname;
+    document.getElementById("welcome").style.display="block";
+  }else{
+    document.getElementById("login").style.display="block";
+    document.getElementById("welcome").style.display="none";
+  }
+});
+document.getElementById("logout").onclick=function(){
+  ajax({
+    type:"get",
+    url:"data/logout.php"
+  }).then(()=>{
+    location.reload(true);
+  })
+};
