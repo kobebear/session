@@ -5,8 +5,7 @@ ajax({
 }).then(data=>{
   if(data.ok==1){
     document.getElementById("login").style.display="none";
-    document.getElementById("uname")
-            .innerHTML=data.uname;
+    document.getElementById("uname").innerHTML=data.uname;
     document.getElementById("welcome").style.display="block";
   }else{
     document.getElementById("login").style.display="block";
@@ -20,4 +19,4 @@ document.getElementById("logout").onclick=function(){
   }).then(()=>{
     location.reload(true);
   })
-};
+}

@@ -1,6 +1,6 @@
 <?php
 $filename='online.txt';//数据文件
-$onlinetime=30;//在线有效时间，单位：秒 (即600等于10分钟)
+$onlinetime=600;//在线有效时间，单位：秒 (即600等于10分钟)
 /*****每次执行php，都先遍历并检查现有online.txt文件内容****/
 $online=file($filename);
 //PHP file() 函数把整个文件读入一个数组中。与 file_get_contents() 类似，不同的是 file() 将文件作为一个数组返回。数组中的每个单元都是文件中相应的一行，包括换行符在内。如果失败，则返回 false
@@ -25,7 +25,6 @@ if($uid==null){//如果没有SESSION即是初次访问
     $vid++;
     $uid='U'.$vid;
   }while(array_key_exists($uid,$nowonline));
-  var_dump($uid);
   $_SESSION["uid"]=$uid;
 }
 $nowonline[$uid]=$nowtime;//更新现在的时间状态

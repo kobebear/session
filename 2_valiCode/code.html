@@ -1,44 +1,46 @@
-<!doctype html>
-<html>
- <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
     .ok{color:green}
     .err{color:red}
-    img{cursor:pointer;}
+    img{cursor:pointer}
   </style>
- </head>
- <body>
-    验证码:<input id="txtCode"/>
-    <img id="imgCode" src="data/getCode.php" title="看不清，点击换一张"/>
-    <br>
-    <span id="msgCode"></span>
-    <script src="js/ajax.js"></script>
-    <script>
-      txtCode.onkeyup=function(){
-        if(txtCode.value!=""){
-          ajax({
-            type:"get",
-            url:"data/chkCode.php",
-            data:"code="+txtCode.value
-          }).then(text=>{
-            if(text=="true"){
-              msgCode.innerHTML="验证码正确";
-              msgCode.className="ok";
-            }else{
-              msgCode.innerHTML="验证码错误";
-              msgCode.className="err";
-            }
-          })
-        }else
-          msgCode.innerHTML="";
+</head>
+<body>
+  验证码: <input id="txtCode">
+  <img id="imgCode" src="data/getCode.php" title="看不清，点击换一张">
+  <br>
+  <span id="msg"></span>
+  <script src="js/ajax.js"></script>
+  <script>
+    txtCode.onkeyup=function(){
+      if(txtCode.value!=""){
+        ajax({
+          type:"get",
+          url:"data/chkCode.php",
+          data:"code="+txtCode.value
+        }).then(text=>{
+          if(text=="true"){
+            msg.innerHTML="验证码正确";
+            msg.className="ok";
+          }else{
+            msg.innerHTML="验证码错误";
+            msg.className="err";
+          }
+        })
+      }else{
+        msg.innerHTML="";
+        msg.className="";
       }
-      //为imgCode绑定单击事件 
-      imgCode.onclick=function(){
-        //修改当前imgCode的src属性为指定的php路径
-        imgCode.src="data/getCode.php";
-      }
-    </script>  
- </body>
+    }
+    imgCode.onclick=function(){
+      imgCode.src="data/getCode.php";
+    }
+  </script>
+</body>
 </html>
